@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import userRoutes from "./routes/userRoutes";
+import connectToDb from "./config/connectToDb";
 
 const app = express();
 app.use(express.json());
@@ -13,7 +15,11 @@ app.get("/api/test",async(req:express.Request,res:express.Response)=>{
     res.json({message:"TEST endpoint"})
 });
 
+app.use("/api/users",userRoutes)
 
-app.listen(PORT,()=>{
-    console.log(`server listen on port:${PORT}`)
+
+
+
+connectToDb().then(()=>{
+    app.listen(PORT,()=>console.log("Server is running on port",PORT))
 })
