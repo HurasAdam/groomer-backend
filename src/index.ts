@@ -1,21 +1,27 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import userRoutes from "./routes/userRoutes";
 import connectToDb from "./config/connectToDb";
+
+
+// ROUTES
+import userRoutes from "./routes/userRoutes";
+import servicesRoutes from "./routes/servicesRoutes";
+
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cors());
+app.use(cors({
+    origin:process.env.FRONTEND_URL
+}));
 
 const PORT=3000;
 
-app.get("/api/test",async(req:express.Request,res:express.Response)=>{
-    res.json({message:"TEST endpoint"})
-});
+
 
 app.use("/api/users",userRoutes)
+app.use("/api/services",servicesRoutes)
 
 
 
