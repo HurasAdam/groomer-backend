@@ -3,12 +3,14 @@ import Service from "../../models/Service";
 
 export const createService = async(req:Request,res:Response)=>{
     try{
-const {name,description,price,estimatedTime}=req.body;
+const {name,description,price,estimatedTime,image,animal}=req.body;
 
 let service = {
     name,
     description,
     price,
+    image,
+    animal,
     estimatedTime
 }
 

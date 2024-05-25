@@ -6,9 +6,12 @@ const ServiceSchema = new Schema({
     created:{type:Date,default:Date.now()},
     price:{type:Number,requied:true,},
     estimatedTime:{type:Number,required:true},
+    animal:{type:String,required:true},
+    image:{type:String},
+    reservationCount:{type:Number,default:0}
     
 })
 
 
-const Service = model("Sergice",ServiceSchema);
+const Service = model("Service",ServiceSchema);
 export default Service;
