@@ -30,3 +30,14 @@ next()
         }
     }
 }
+
+
+export const adminGuard = async (req: Request, res: Response, next: NextFunction) => {
+  const user = await User.findById({ _id: req.user });
+
+  if (user && user.role==="admin") {
+      next()
+  } else {
+  return res.status(403).json({message:"Forbiden Access"})
+  }
+}
