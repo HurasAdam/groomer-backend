@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post("/create",servicesControllers.createService);
 router.get("/",servicesControllers.getAllServices);
+router.get("/:id",servicesControllers.getService)
 
 
 

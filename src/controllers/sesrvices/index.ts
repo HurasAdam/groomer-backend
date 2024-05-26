@@ -1,10 +1,12 @@
 import {createService} from "./createService";
 import {getAllServices} from "./getAllServices";
+import { getService } from "./getService";
 
 
 const servicesControllers = {
     createService,
-    getAllServices
+    getAllServices,
+    getService,
 }
 
 export default servicesControllers
