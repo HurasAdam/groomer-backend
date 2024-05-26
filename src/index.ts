@@ -7,6 +7,7 @@ import connectToDb from "./config/connectToDb";
 import userRoutes from "./routes/userRoutes";
 import servicesRoutes from "./routes/servicesRoutes";
 import reservationRoutes from "./routes/reservationRoutes";
+import adminRoutes from "./routes/adminRoutes";
 
 
 const app = express();
@@ -22,6 +23,7 @@ const PORT=3000;
 app.use("/api/users",userRoutes);
 app.use("/api/services",servicesRoutes);
 app.use("/api/reservations",reservationRoutes);
+app.use("/api/admin",adminRoutes);
 
 
 
