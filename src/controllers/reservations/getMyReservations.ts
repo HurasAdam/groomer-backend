@@ -4,7 +4,7 @@ import Reservation from "../../models/Reservaton"
 export const getMyReservations = async(req:Request,res:Response)=>{
 const {id}=req.params;
 
-const myReservations = await Reservation.find({user:id}).populate([{path:"service",select:["name","price","estimatedTime","image","description"]}]).select(["-user"])
+const myReservations = await Reservation.find({user:id}).populate([{path:"service",select:["name","price","estimatedTime","image","description"]},{path:"user",select:["username","avatar"]}])
 
 res.status(200).json(myReservations);
 

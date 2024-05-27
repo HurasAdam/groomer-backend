@@ -11,13 +11,14 @@ if(user){
     return res.status(400).json({message:"Email already taken"})
 }
 user = await User.create({
-    username,email,password,role:"employee"
+    username,email,password,role:"employee",avatar:""
 });
 return res.status(200).json({
     _id:user._id,
     username:user.username,
     email:user.email,
     role:user.role,
+    avatar:"",
     token: await user.generateJWT()
 })
 

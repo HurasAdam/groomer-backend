@@ -8,6 +8,7 @@ const UserSchema = new Schema({
 email:{type:String,required:true,unique:true,lowercase:true},
 username:{type:String,required:true},
 password:{type:String,required:true},
+avatar:{type:String},
 role: { type: String, enum: ['client', 'employee', 'admin'], required: true }
 })
 
