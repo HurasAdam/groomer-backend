@@ -7,7 +7,7 @@ export const createReservation = async(req:Request,res:Response)=>{
 try{
 const {serviceId, employee, petName, petRace,reservationDate,extraInfo}=req.body
 const selectedService= await Service.findById(serviceId)
-const selectedEmployee = await User.findById(employee)
+const selectedEmployee = await User.findById(employee).select("_id");
 
 if(!selectedService){
     return res.status(404).json({message:"Service not found"})
@@ -17,7 +17,7 @@ if(!selectedEmployee){
     return res.status(404).json({message:"Selected employee not found"})
 }
 
-const reservaion = new Reservation({service:selectedService._id,user:req.user,petName,petRace,reservationDate,extraInfo});
+const reservaion = new Reservation({service:selectedService._id,owner:req.user,petName,petRace,reservationDate,extraInfo,assignedEmployee:selectedEmployee});
 await reservaion.save();
 
  selectedService.reservationCount= selectedService.reservationCount +1;
