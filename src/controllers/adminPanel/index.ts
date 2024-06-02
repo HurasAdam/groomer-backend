@@ -1,7 +1,9 @@
 import { registerEmployee } from "./registerEmployee";
+import { getReservations } from "./getReservations";
 
 const adminControllers = {
-    registerEmployee
+    registerEmployee,
+    getReservations,
 }
 
 export default adminControllers;
