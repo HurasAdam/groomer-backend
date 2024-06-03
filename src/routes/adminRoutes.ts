@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post("/register-employee",authGuard,adminGuard,adminControllers.registerEmployee);
 router.get("/reservations",authGuard, adminGuard, adminControllers.getReservations);
+router.get("/employees",authGuard, adminGuard,adminControllers.getEmployees)
 
 export default router;
