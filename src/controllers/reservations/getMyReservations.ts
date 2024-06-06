@@ -3,7 +3,7 @@ import Reservation from "../../models/Reservaton"
 
 export const getMyReservations = async(req:Request,res:Response)=>{
 
-const myReservations = await Reservation.find({owner:req.user}).populate([
+const myReservations = await Reservation.find({owner:req.user,isCanceled: false}).populate([
     {
         path:"service",
         select:["name","price","estimatedTime","image","description"]

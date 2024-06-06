@@ -8,6 +8,10 @@ const ReservationSchema = new Schema({
     petRace:{type:String,required:true},
     extraInfo:{type:String},
     assignedEmployee:{type:Schema.Types.ObjectId, ref:"User",required:true},
+    isCanceled:{type:Boolean,default:false},
+    isCompleted:{type:Boolean, default:false},
+    isPending:{type:Boolean,default:true},
+
 
 })
 

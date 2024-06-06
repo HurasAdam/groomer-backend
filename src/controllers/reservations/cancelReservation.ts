@@ -15,9 +15,13 @@ if(!reservation){
     return res.status(404).json({message:"Reservation not found"})
 }
 
-const isReservationDeleted=await Reservation.findOneAndDelete({_id:id});
+const updatedReservation = await Reservation.findOneAndUpdate(
+    { _id: id },
+    { $set: { isCanceled: true, isPending: false } },
+    { new: true }
+);
 
-if(isReservationDeleted){
+if(updatedReservation){
     return res.status(200).json({message:"Reservation canceled"})
 }
 
