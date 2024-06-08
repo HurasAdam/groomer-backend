@@ -10,21 +10,13 @@ if(!allServices){
 }
 
 
-// const finalResponse = await Promise.all(allServices.map(async (service) => {
-//     const calculatedPrice = await service.calculateFinalPrice();
-//     return {
-//         ...service.toJSON(),
-//         price: calculatedPrice
-//     };
-// }));
-
-
 const finalResponsee = allServices.map((service) => ({
     _id:service._id,
     name:service.name,
     description:service.description,
     created:service.created,
     anima:service.animal,
+    estimatedTime:service.estimatedTime,
     image:service.image,
     reservationCount:service.reservationCount,
     isPromotion:service.isPromotion,

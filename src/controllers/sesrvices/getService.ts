@@ -17,6 +17,7 @@ export const getService = async (req: Request, res: Response) => {
          description:service.description,
          created:service.created,
          animal:service.animal,
+         estimatedTime:service.estimatedTime,
          image:service.image,
          reservationCount:service.reservationCount,
             price: await service.calculateFinalPrice() 
