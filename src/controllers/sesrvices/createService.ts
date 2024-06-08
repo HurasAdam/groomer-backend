@@ -3,7 +3,7 @@ import Service from "../../models/Service";
 
 export const createService = async(req:Request,res:Response)=>{
     try{
-const {name,description,price,estimatedTime,image,animal}=req.body;
+const {name,description,price,estimatedTime,image,animal,isPromotion,promotionPrice,discountPrice}=req.body;
 
 let service = {
     name,
@@ -11,7 +11,10 @@ let service = {
     price,
     image,
     animal,
-    estimatedTime
+    estimatedTime,
+    promotionPrice,
+    discountPrice,
+    isPromotion
 }
 
  await Service.create(service);
