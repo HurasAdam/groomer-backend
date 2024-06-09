@@ -30,7 +30,7 @@ service.price = price ? price :service.price
 
        const xd= await service.save();
 
-        res.status(200).json(xd);
+        res.status(200).json({message:"Usługa zostala zaktualizowana "});
     } catch (error) {
         console.log(`ERROR:${error}`);
         res.status(500).json({ message: "Internal Server Error" });

@@ -18,7 +18,7 @@ let service = {
 }
 
  await Service.create(service);
-return res.status(200).json(service)
+return res.status(200).json({message:"Usługa została dodana"})
 
     }catch(error){
         console.log(`ERROR:${error}`)
