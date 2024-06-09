@@ -8,5 +8,7 @@ router.post("/register-employee",authGuard,adminGuard,adminControllers.registerE
 router.get("/reservations",authGuard, adminGuard, adminControllers.getReservations);
 router.get("/employees",authGuard, adminGuard,adminControllers.getEmployees);
 router.get("/customers",authGuard, adminGuard,adminControllers.getCustomers);
+router.get("/service/:id",authGuard, adminGuard, adminControllers.getServiceDetails);
+router.put("/update/service/:id",authGuard,adminGuard,adminControllers.updateServiceDetails);
 
 export default router;
