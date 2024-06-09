@@ -14,11 +14,19 @@ declare global {
 
 export const authGuard = async(req:Request,res:Response,next:NextFunction)=>{
 
-    if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
+
+if(!req.cookies["auth_token"]){
+  return res.status(401).json({message:"Authorization required"})
+}
+
+    if(req.cookies["auth_token"]){
         try{
-const token = req.headers.authorization.split(" ")[1];
+
+          const token = req.cookies["auth_token"];
+
 const {id}=verify(token, process.env.JWT_SECRET_KEY as string) as JwtPayload;
 const user = await User.findById(id);
+        
 if(user){
     req.user=id;
 next()

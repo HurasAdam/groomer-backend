@@ -8,17 +8,26 @@ try{
 const {email,password}=req.body;
 
 let user = await User.findOne({email});
-console.log(user)
+
 if(!user){
     return res.status(400).json({message:"Email not found"})
 }
 if(await user.comparePassword(password)){
+
+
+const token = await user.generateJWT();
+res.cookie("auth_token",token,{
+    httpOnly:true,
+    secure:false,
+    maxAge:86400000
+})
+
     return res.status(200).json({
         _id:user._id,
         email:user.email,
         username:user.username,
     role:user.role,
-        token:await user.generateJWT()
+
     })
 }else{
     return res.status(400).json({message:"Invalid email or password"})
