@@ -10,5 +10,6 @@ router.get("/employees",authGuard, adminGuard,adminControllers.getEmployees);
 router.get("/customers",authGuard, adminGuard,adminControllers.getCustomers);
 router.get("/service/:id",authGuard, adminGuard, adminControllers.getServiceDetails);
 router.put("/update/service/:id",authGuard,adminGuard,adminControllers.updateServiceDetails);
+router.get("/auth/adminValidate",authGuard,adminGuard,adminControllers.validateToken)
 
 export default router;

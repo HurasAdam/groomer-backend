@@ -4,6 +4,7 @@ import { getEmployees } from "./getEmployees";
 import { getCustomers } from "./getCustomers";
 import {getServiceDetails} from "./getServiceDetails";
 import { updateServiceDetails } from "./updateServiceDetails";
+import { validateToken } from "../auth/validateToken";
 
 const adminControllers = {
     registerEmployee,
@@ -11,7 +12,8 @@ const adminControllers = {
     getEmployees,
     getCustomers,
     getServiceDetails,
-    updateServiceDetails
+    updateServiceDetails,
+    validateToken
 }
 
 export default adminControllers;
