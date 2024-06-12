@@ -4,18 +4,32 @@ import { Request,Response } from "express";
 export const  getAllServices= async(req:Request,res:Response) =>{
 
     try{
-const allServices = await Service.find();
+        const {filter,animal} = req.query;
+console.log(req.query)
+
+let query = Service.find();
+
+if (animal) {
+    query = query.where({ animal });
+}
+
+if (filter === "popular") {
+    query = query.sort({ reservationCount: -1 }).limit(6);
+}
+
+const allServices = await query.exec();
+
+
 if(!allServices){
     return res.status(200).json([]);
 }
-
 
 const finalResponsee = allServices.map((service) => ({
     _id:service._id,
     name:service.name,
     description:service.description,
     created:service.created,
-    anima:service.animal,
+    animal:service.animal,
     estimatedTime:service.estimatedTime,
     image:service.image,
     reservationCount:service.reservationCount,
