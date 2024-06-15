@@ -2,12 +2,14 @@
 import { Response,Request,NextFunction } from "express"
 import { JwtPayload,verify } from "jsonwebtoken";
 import User from "../models/User";
+import Employee from "../models/Employee";
 
 
 declare global {
     namespace Express {
       interface Request {
         user: string;
+        role:string;
       }
     }
   }
@@ -24,11 +26,21 @@ if(!req.cookies["auth_token"]){
 
           const token = req.cookies["auth_token"];
 
-const {id}=verify(token, process.env.JWT_SECRET_KEY as string) as JwtPayload;
-const user = await User.findById(id);
+const {id,role}=verify(token, process.env.JWT_SECRET_KEY as string) as JwtPayload;
+
+
+
+let user;
+if (role === "client" || role === "admin") {
+  user = await User.findById(id);
+} else if (role === "employee") {
+  user = await Employee.findById(id);
+}
+
         
 if(user){
     req.user=id;
+    req.role=user.role
 next()
 }
 

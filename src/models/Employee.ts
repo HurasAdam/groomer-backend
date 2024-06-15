@@ -4,16 +4,18 @@ import * as types from "../types/index";
 import { compare,hash } from "bcryptjs";
 
 
-const UserSchema = new Schema({
+const EmployeeSchema = new Schema({
 email:{type:String,required:true,unique:true,lowercase:true},
 username:{type:String,required:true},
 password:{type:String,required:true},
 avatar:{type:String},
-role: { type: String, enum: ['client', 'employee', 'admin'], required: true }
-})
+role:{type:String,required:true},
+experienceLevel:{type:String,required:true}
+
+});
 
 
-UserSchema.pre("save",async function(next){
+EmployeeSchema.pre("save",async function(next){
   if(this.isDirectModified("password")){
     this.password = await hash(this.password,10);
     return next();
@@ -21,17 +23,17 @@ UserSchema.pre("save",async function(next){
   return next();
 })
 
-UserSchema.methods.generateJWT = async function (): Promise<string> {
+EmployeeSchema.methods.generateJWT = async function (): Promise<string> {
     return await sign({ id: this._id,role:this.role }, process.env.JWT_SECRET_KEY as string, {
       expiresIn: "30d",
     });
   };
   
 
-  UserSchema.methods.comparePassword = async function(password:string){
+  EmployeeSchema.methods.comparePassword = async function(password:string){
     return await compare(password,this.password);
   }
 
 
-const User = model<types.IUserDocument>("User",UserSchema);
-export default User;
+const Employee = model<types.IUserDocument>("Employee",EmployeeSchema);
+export default Employee;

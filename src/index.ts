@@ -10,6 +10,7 @@ import servicesRoutes from "./routes/servicesRoutes";
 import reservationRoutes from "./routes/reservationRoutes";
 import adminRoutes from "./routes/adminRoutes";
 import authRoutes from "./routes/authRoutes";
+import employeeRoutes from "./routes/employeeRoutes";
 
 
 
@@ -30,6 +31,7 @@ app.use("/api/services",servicesRoutes);
 app.use("/api/reservations",reservationRoutes);
 app.use("/api/admin",adminRoutes);
 app.use("/api/auth",authRoutes);
+app.use("/api/employee-auth",employeeRoutes)
 
 
 
