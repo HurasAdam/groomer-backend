@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { v2 as cloudinary } from "cloudinary"
 import "dotenv/config";
 import connectToDb from "./config/connectToDb";
 
@@ -13,6 +14,11 @@ import authRoutes from "./routes/authRoutes";
 import employeeRoutes from "./routes/employeeRoutes";
 
 
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  })
 
 const app = express();
 app.use(cookieParser());
