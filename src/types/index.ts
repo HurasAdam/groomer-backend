@@ -10,6 +10,7 @@ export interface IUserDocument extends IUser, Document {
     email: string;
     password: string;
     role: 'client' | 'employee' | 'admin'; 
+    mustChangePassword:boolean;
 
  
   }

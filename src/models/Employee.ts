@@ -9,6 +9,7 @@ email:{type:String,required:true,unique:true,lowercase:true},
 username:{type:String,required:true},
 password:{type:String,required:true},
 avatar:{type:String},
+isActive:{type:Boolean,default:false},
 role:{type:String,required:true},
 experienceLevel:{type:String,required:true},
 mustChangePassword: { type: Boolean, default: true } 
