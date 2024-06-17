@@ -25,9 +25,9 @@ if(isSaved){
     const result = await employee.save();
     updatedEmployee= result;
 }
-res.status(200).json(updatedEmployee)
+res.status(200).json({message:"Hasło zostało zmienione"})
 }else{
-    return res.status(400).json({message:"Invalid email or password"})
+    return res.status(400).json({message:"Błędne hasło"})
 }
 
 }catch(error){
