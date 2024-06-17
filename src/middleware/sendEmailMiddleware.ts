@@ -18,7 +18,17 @@ export const sendEmailMiddleware = async ({email,content}:{email:string,content:
       from: 'adamhuras94@gmail.com', // tutaj wpisz swój adres e-mail
       to: email,
       subject: 'Your account has been created',
-      text: content
+      text: content,
+      html: `
+      <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
+        <h1 style="color: #0056b3;">Witamy w Groomer!</h1>
+        <p>Twoje konto zostało pomyślnie utworzone. Poniżej znajdziesz swoje dane logowania:</p>
+        <p><strong>Hasło:</strong> ${content}</p>
+       <br></br>
+        <p>Prosimy o zmianę hasła po pierwszym zalogowaniu.</p>
+        <p>Pozdrawiamy,<br>Zespół Supportu</p>
+      </div>
+    `
     };
 
     await transporter.sendMail(mailOptions);

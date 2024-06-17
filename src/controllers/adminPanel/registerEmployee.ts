@@ -26,7 +26,7 @@ const randomPassword = randomBytes(8).toString('hex');
 user = await Employee.create({
     email,username,password:randomPassword,experienceLevel,avatar,bio,image:"",role:"employee"
 });
-await sendEmailMiddleware({email,content:`HELLO THERE ${randomPassword}`});
+await sendEmailMiddleware({email,content:randomPassword});
 
 return res.status(200).json({
     _id:user._id,
